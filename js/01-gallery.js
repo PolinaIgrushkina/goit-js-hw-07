@@ -43,8 +43,19 @@ function clickOnImg(event) {
     <img src="${event.target.dataset.source}" width="800" height="600">
 `);
   
-    instance.show();
+  instance.show();
   
+  //Закрытие модального окна кнопокй Escape
+  document.addEventListener('keydown', clickOnEscape);
+  
+  function clickOnEscape(event) {
+  if (event.code !== "Escape") {
+    return;
+  };
+
+  instance.close();
+
+  document.removeEventListener('keydown', clickOnEscape);
+};
 };
 
-//Закрытие модального окна кнопокй Escape
