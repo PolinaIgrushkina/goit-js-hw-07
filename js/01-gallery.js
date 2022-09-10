@@ -29,25 +29,22 @@ function createMarkup(items) {
 //Добавляем разметку в div-контейнер
 imgContainerEl.innerHTML = markup;
 
-const imgElArray = document.querySelectorAll('.gallery__image');
+//Делегирование клика по картинке на div-контейнер
+imgContainerEl.addEventListener('click', clickOnImg);
 
-//Создаем клик по каждой картинке с открытием модального окна, но без перехода по ссылке
-const addClickOnImg = imgElArray.forEach(imgEl => imgEl.addEventListener('click', clickOnImg));
-
+//Функция клика по картинке с открытием модального окна, но без перехода по ссылке
 function clickOnImg(event) {
-  event.preventDefault();
-  instance.show();
-}
-
-//Создание переменной, значением которой будет создание модального окна через basicLightbox
-const instance = basicLightbox.create(`
-    <img src="" width="800" height="600">
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+    event.preventDefault();
+  
+    const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="800" height="600">
 `);
-
-//Как получить ссылку на каждую картину ?
-
-
-// Реализация делегирования на div.gallery и получение url большого изображения
+  
+    instance.show();
+  
+};
 
 //Закрытие модального окна кнопокй Escape
-
