@@ -23,19 +23,7 @@ function createMarkup(items) {
 //Добавляем разметку в ul-контейнер
 ulContainerEl.innerHTML = markup;
 
-//
-//Делегирование клика по картинке на ul-контейнер
-ulContainerEl.addEventListener('click', clickOnImg);
-
-//Функция клика по картинке с открытием модального окна, но без перехода по ссылке
-function clickOnImg(event) {
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-    event.preventDefault();
-
-  const lightbox = new SimpleLightbox(".gallery a", {captionsData: "alt", captionDelay: 250,});
-
-};
+//Открытие модального окна с опциями через библиотеку SimpleLightbox
+const lightbox = new SimpleLightbox(".gallery a", {captionsData: "alt", captionDelay: 250,});
 
 
